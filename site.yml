@@ -1,5 +1,7 @@
 ---
 - hosts: localhost
+	connection: local
+
   tasks:
   - name: Resource Group
     azure_rm_resourcegroup:
@@ -9,4 +11,5 @@
         automation: 'ansible-azdo'
         environment: lab
         owner: craigf
+
 ...
