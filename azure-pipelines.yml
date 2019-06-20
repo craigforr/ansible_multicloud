@@ -10,6 +10,6 @@ pool:
   vmImage: 'ubuntu-16.04'
 
 steps:
-- displayName: "Check Python Package Versions"
-  script: pip freeze | grep -i ansible
+- script: pip freeze | grep -i ansible
+  displayName: "Check Python Package Versions"
 
