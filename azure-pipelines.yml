@@ -34,7 +34,7 @@ stages:
               AZURE_TENANT: $(AZURE_TENANT)
   - stage: Deploy
     jobs:
-      - job: Deploy Azure Infrastructure
+      - job: Infrastructure
         pool:
           vmImage: 'ubuntu-16.04'
         container: microsoft/ansible:latest
