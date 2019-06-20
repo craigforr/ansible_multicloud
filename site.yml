@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  tasks:
+
+  - debug: msg="Ansible is working!"
+
+  - name: Resource Group
+    azure_rm_resourcegroup:
+      name: cf-lab
+      location: northcentralus
+      tags:
+        automation: 'ansible-azdo'
+        environment: lab
+        owner: craigf
+...
