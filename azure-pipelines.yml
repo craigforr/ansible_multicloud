@@ -9,12 +9,18 @@ trigger:
 pool:
   vmImage: 'ubuntu-16.04'
 
-steps:
+
+stages:
+- stage: Build
   variables:
-    - name: azureSubscription
-      value: 'Azure RedPoint'
-  - script: set
-    displayName: "Check Azure Pipeline Agent Environment Variables"
-  - bash: echo "System Access Token: $SYSTEM_ACCESSTOKEN"
-    env:
-      SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+    - azureSubscription: 'Azure RedPoint'
+
+  jobs:
+    - job: Preview
+      steps:
+        - script: set
+          displayName: "Check Azure Pipeline Agent Environment Variables"
+        - bash: echo "System Access Token: $SYSTEM_ACCESSTOKEN"
+          env:
+            SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+        - bash: echo "azureSubscription: $(azureSubscription)"
