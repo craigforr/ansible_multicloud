@@ -1,15 +1,15 @@
 ---
 trigger:
-- master
+  - master
 
 jobs:
-- job: Preview
-  pool:
-    vmImage: 'ubuntu-16.04'
-  variables:
-    azureSubscription: 'Azure RedPoint'
-  steps:
-  - script: set
-    displayName: "Check Azure Pipeline Agent Environment Variables"
-  - bash: ansible-playbook --syntax-check test.yml
+  - job: Preview
+    pool:
+      vmImage: 'ubuntu-16.04'
+    variables:
+      azureSubscription: 'Azure RedPoint'
+    steps:
+      - script: set
+        displayName: "Check Azure Pipeline Agent Environment Variables"
+      - bash: ansible-playbook --syntax-check --connection=local test.yml
 ...
