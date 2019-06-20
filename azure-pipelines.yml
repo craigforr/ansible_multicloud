@@ -20,4 +20,11 @@ stages:
             displayName: "Check Version of ansible, ansible-playbook"
           - bash: ansible-playbook --syntax-check --connection=local test.yml
             displayName: "Check Ansible Playbook Syntax"
+      - job: Build
+        pool:
+          vmImage: 'ubuntu-16.04'
+        container: microsoft/ansible:latest
+        steps:
+          - bash: ansible-playbook --check --connection=local test.yml
+            displayName: "Ansible Playbook Check (Dry Run)"
 ...
