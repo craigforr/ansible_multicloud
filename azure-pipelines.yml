@@ -40,7 +40,7 @@ stages:
         container: microsoft/ansible:latest
         steps:
           - bash: ansible-playbook --connection=local test.yml
-            displayName: "Ansible Playbook Check (Dry Run)"
+            displayName: "Ansible Playbook Run"
             env:
               AZURE_CLIENT_ID: $(AZURE_CLIENT_ID)
               AZURE_SECRET: $(AZURE_SECRET)
