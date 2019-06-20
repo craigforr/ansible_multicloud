@@ -12,10 +12,7 @@ jobs:
     vmImage: 'ubuntu-16.04'
   variables:
     azureSubscription: 'Azure RedPoint'
-  env:
-    SYSTEM_ACCESSTOKEN: $(System.AccessToken)
   steps:
     - script: set
       displayName: "Check Azure Pipeline Agent Environment Variables"
-    - bash: echo "System Access Token: $SYSTEM_ACCESSTOKEN"
     - bash: echo "azureSubscription: $(azureSubscription)"
