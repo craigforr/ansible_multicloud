@@ -27,4 +27,9 @@ stages:
         steps:
           - bash: ansible-playbook --check --connection=local test.yml
             displayName: "Ansible Playbook Check (Dry Run)"
+            env:
+              AZURE_CLIENT_ID: $(AZURE_CLIENT_ID)
+              AZURE_SECRET: $(AZURE_SECRET)
+              AZURE_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
+              AZURE_TENANT: $(AZURE_TENANT)
 ...
