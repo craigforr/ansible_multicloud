@@ -10,5 +10,5 @@ pool:
   vmImage: 'ubuntu-16.04'
 
 steps:
-- script: az account list ; az group list
-  displayName: "Check Azure Connectivity"
+- script: set
+  displayName: "Check Azure Pipeline Agent Environment Variables"
