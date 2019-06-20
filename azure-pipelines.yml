@@ -10,6 +10,6 @@ pool:
   vmImage: 'ubuntu-16.04'
 
 steps:
-- script: pip freeze | grep -i ansible
-  displayName: "Check Python Package Versions"
+- script: ansible-playbook site.yml
+  displayName: "Build Azure infrastructure"
 
