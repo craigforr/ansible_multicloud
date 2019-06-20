@@ -6,10 +6,10 @@ jobs:
   - job: Preview
     pool:
       vmImage: 'ubuntu-16.04'
+    container: microsoft/ansible:ubuntu1604
     variables:
       azureSubscription: 'Azure RedPoint'
     steps:
-      - bash: sudo apt-get upgrade -y ansible
       - bash: set
         displayName: "Check Azure Pipeline Agent Environment Variables"
       - bash: ansible --version; ansible-playbook --version
