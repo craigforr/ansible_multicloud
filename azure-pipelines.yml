@@ -9,6 +9,11 @@ trigger:
 stages:
   - stage: Build
     jobs:
+      env:
+        AZURE_CLIENT_ID: $(AZURE_CLIENT_ID)
+        AZURE_SECRET: $(AZURE_SECRET)
+        AZURE_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
+        AZURE_TENANT: $(AZURE_TENANT)
       - job: Preview
         pool:
           vmImage: 'ubuntu-16.04'
@@ -27,9 +32,11 @@ stages:
         steps:
           - bash: ansible-playbook --check --connection=local test.yml
             displayName: "Ansible Playbook Check (Dry Run)"
-            env:
-              AZURE_CLIENT_ID: $(AZURE_CLIENT_ID)
-              AZURE_SECRET: $(AZURE_SECRET)
-              AZURE_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
-              AZURE_TENANT: $(AZURE_TENANT)
+      - job: Test
+        pool:
+          vmImage: 'ubuntu-16.04'
+        container: microsoft/ansible:latest
+        steps:
+          - bash: ansible-playbook --connection=local test.yml
+            displayName: "Ansible Playbook"
 ...
