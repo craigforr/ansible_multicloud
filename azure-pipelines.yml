@@ -10,6 +10,6 @@ pool:
   vmImage: 'ubuntu-16.04'
 
 steps:
-- script: ansible-playbook site.yml
+- script: ansible-playbook test.yml
   displayName: "Build Azure infrastructure"
 
