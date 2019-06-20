@@ -10,6 +10,6 @@ pool:
   vmImage: 'ubuntu-16.04'
 
 steps:
-- script: ansible-playbook test.yml
-  displayName: "Build Azure infrastructure"
+- script: ansible-playbook --version
+  displayName: "Check Ansible Playbook Version"
 
