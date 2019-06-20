@@ -3,10 +3,6 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-variables:
-  - name: azureSubscription
-    value: 'Azure RedPoint'
-
 trigger:
 - master
 
@@ -14,6 +10,9 @@ pool:
   vmImage: 'ubuntu-16.04'
 
 steps:
+  variables:
+    - name: azureSubscription
+      value: 'Azure RedPoint'
   - script: set
     displayName: "Check Azure Pipeline Agent Environment Variables"
   - bash: echo "System Access Token: $SYSTEM_ACCESSTOKEN"
