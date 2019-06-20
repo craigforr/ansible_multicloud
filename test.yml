@@ -1,7 +1,8 @@
 ---
 - hosts: localhost
   tasks:
-    - azure_rm_resourcegroup:
+    - name: Resource Group
+      azure_rm_resourcegroup:
         name: cf-lab
         location: northcentralus
       register: rg

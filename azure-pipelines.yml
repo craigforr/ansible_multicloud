@@ -9,7 +9,10 @@ jobs:
     variables:
       azureSubscription: 'Azure RedPoint'
     steps:
-      - script: set
+      - bash: set
         displayName: "Check Azure Pipeline Agent Environment Variables"
+      - bash: ansible-playbook --version
+        displayName: "Check Version of ansible-playbook"
       - bash: ansible-playbook --syntax-check --connection=local test.yml
+        displayName: "Check Ansible Playbook Syntax"
 ...
