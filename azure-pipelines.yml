@@ -13,6 +13,6 @@ jobs:
   variables:
     azureSubscription: 'Azure RedPoint'
   steps:
-    - script: set
-      displayName: "Check Azure Pipeline Agent Environment Variables"
-    - bash: echo "azureSubscription: $(azureSubscription)"
+  - script: set
+    displayName: "Check Azure Pipeline Agent Environment Variables"
+  - bash: echo "azureSubscription: $(azureSubscription)"
