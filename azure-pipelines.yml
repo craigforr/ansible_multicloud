@@ -6,13 +6,14 @@ jobs:
   - job: Preview
     pool:
       vmImage: 'ubuntu-16.04'
+    container: ubuntu:18.04
     variables:
       azureSubscription: 'Azure RedPoint'
     steps:
       - bash: set
         displayName: "Check Azure Pipeline Agent Environment Variables"
-      - bash: ansible-playbook --version
-        displayName: "Check Version of ansible-playbook"
+      - bash: ansible --version; ansible-playbook --version
+        displayName: "Check Version of ansible, ansible-playbook"
       - bash: ansible-playbook --syntax-check --connection=local test.yml
         displayName: "Check Ansible Playbook Syntax"
 ...
