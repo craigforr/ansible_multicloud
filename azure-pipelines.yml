@@ -9,7 +9,7 @@ jobs:
     variables:
       azureSubscription: 'Azure RedPoint'
     steps:
-      - bash: sudo apt-get upgrade -y
+      - bash: sudo apt-get upgrade -y ansible
       - bash: set
         displayName: "Check Azure Pipeline Agent Environment Variables"
       - bash: ansible --version; ansible-playbook --version
