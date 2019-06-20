@@ -9,8 +9,6 @@ trigger:
 pool:
   vmImage: 'ubuntu-16.04'
 
-container: ubuntu:16.04
-
 steps:
 - script: ansible-playbook main.yml --connection=local
   displayName: 'Ansible Hello World'
