@@ -1,15 +1,12 @@
 ---
 - hosts: localhost
   connection: local
-
   tasks:
-  - name: Resource Group
-    azure_rm_resourcegroup:
-      name: cf-lab
-      location: northcentralus
-      tags:
-        automation: 'ansible-azdo'
-        environment: lab
-        owner: craigf
-
+    - name: Resource Group
+      azure_rm_resourcegroup:
+        name: cf-lab
+        location: northcentralus
+      register: rg
+    - debug:
+        var: rg
 ...
