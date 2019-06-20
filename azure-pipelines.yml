@@ -1,19 +1,23 @@
 ---
+# This pipelines definition uses Stages. Make sure the Multi-stage pipelines
+# feature (currently in Preview) is turned on:
+# https://docs.microsoft.com/en-us/azure/devops/project/navigation/preview-features
+
 trigger:
   - master
 
-jobs:
-  - job: Preview
-    pool:
-      vmImage: 'ubuntu-16.04'
-    container: microsoft/ansible:latest
-    variables:
-      azureSubscription: 'Azure RedPoint'
-    steps:
-      - bash: set
-        displayName: "Check Azure Pipeline Agent Environment Variables"
-      - bash: ansible --version; ansible-playbook --version
-        displayName: "Check Version of ansible, ansible-playbook"
-      - bash: ansible-playbook --syntax-check --connection=local test.yml
-        displayName: "Check Ansible Playbook Syntax"
+stages:
+  - stage: Build
+      jobs:
+        - job: Preview
+          pool:
+            vmImage: 'ubuntu-16.04'
+          container: microsoft/ansible:latest
+          steps:
+            - bash: set
+              displayName: "Check Azure Pipeline Agent Environment Variables"
+            - bash: ansible --version; ansible-playbook --version
+              displayName: "Check Version of ansible, ansible-playbook"
+            - bash: ansible-playbook --syntax-check --connection=local test.yml
+              displayName: "Check Ansible Playbook Syntax"
 ...
