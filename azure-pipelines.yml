@@ -2,11 +2,6 @@
 # This pipelines definition uses Stages. Make sure the Multi-stage pipelines
 # feature (currently in Preview) is turned on:
 # https://docs.microsoft.com/en-us/azure/devops/project/navigation/preview-features
-env:
-  AZURE_CLIENT_ID: $(AZURE_CLIENT_ID)
-  AZURE_SECRET: $(AZURE_SECRET)
-  AZURE_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
-  AZURE_TENANT: $(AZURE_TENANT)
 
 trigger:
   - master
@@ -32,6 +27,11 @@ stages:
         steps:
           - bash: ansible-playbook --check --connection=local test.yml
             displayName: "Ansible Playbook Check (Dry Run)"
+            env:
+              AZURE_CLIENT_ID: $(AZURE_CLIENT_ID)
+              AZURE_SECRET: $(AZURE_SECRET)
+              AZURE_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
+              AZURE_TENANT: $(AZURE_TENANT)
   - stage: Deploy
     jobs:
       - job: Deploy_Infrastructure
@@ -41,4 +41,9 @@ stages:
         steps:
           - bash: ansible-playbook --connection=local test.yml
             displayName: "Ansible Playbook Run"
+            env:
+              AZURE_CLIENT_ID: $(AZURE_CLIENT_ID)
+              AZURE_SECRET: $(AZURE_SECRET)
+              AZURE_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
+              AZURE_TENANT: $(AZURE_TENANT)
 ...
