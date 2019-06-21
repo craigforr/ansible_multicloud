@@ -18,6 +18,8 @@ stages:
             displayName: "Check Azure Pipeline Agent Environment Variables"
           - bash: ansible --version; ansible-playbook --version
             displayName: "Check Version of ansible, ansible-playbook"
+          - bash: ansible-doc --list
+            displayName: "Check Installed Ansible Modules with ansible-doc"
           - bash: ansible-playbook --syntax-check --connection=local site.yml --extra-vars "client_id=$env:CLIENT_ID"
             displayName: "Check Ansible Playbook Syntax"
             env:
