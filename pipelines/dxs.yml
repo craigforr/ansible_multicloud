@@ -12,7 +12,7 @@ trigger:
     - pipelines/dxs.yml
 
 stages:
-  - stage: "$(CLIENT_ID) Build"
+  - stage: "$(CLIENT_ID)_Build"
     jobs:
       - job: Check
         pool:
@@ -40,7 +40,7 @@ stages:
               echo "AZURE_TENANT: $(AZURE_TENANT)"
               ansible-playbook --check --connection=local site.yml --extra-vars "client_id=$(CLIENT_ID)"
             displayName: "Ansible Playbook Check (Dry Run)"
-  - stage: $(CLIENT_ID) Deploy
+  - stage: "$(CLIENT_ID)_Deploy"
     jobs:
       - job: Deploy_Infrastructure
         pool:
