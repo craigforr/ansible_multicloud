@@ -27,7 +27,7 @@ stages:
           vmImage: 'ubuntu-16.04'
         container: microsoft/ansible:latest
         steps:
-          - bash: echo ansible-playbook --check --connection=local site.yml --extra-vars "client_id=$(CLIENT_ID)"
+          - bash: echo $AZURE_SECRET ; ansible-playbook --check --connection=local site.yml --extra-vars "client_id=$(CLIENT_ID)"
             displayName: "Ansible Playbook Check (Dry Run)"
   - stage: Deploy
     jobs:
