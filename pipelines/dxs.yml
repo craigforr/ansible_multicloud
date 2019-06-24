@@ -12,7 +12,7 @@ trigger:
     - pipelines/$(CLIENT_ID).yml
 
 stages:
-  - stage: $(CLIENT_ID) Build
+  - stage: "$(CLIENT_ID) Build"
     jobs:
       - job: Check
         pool:
