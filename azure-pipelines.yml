@@ -29,12 +29,6 @@ stages:
         steps:
           - bash: echo ansible-playbook --check --connection=local site.yml --extra-vars "client_id=$(CLIENT_ID)"
             displayName: "Ansible Playbook Check (Dry Run)"
-            env:
-              CLIENT_ID: $(CLIENT_ID)
-              AZURE_CLIENT_ID: $(AZURE_CLIENT_ID)
-              AZURE_SECRET: $(AZURE_SECRET)
-              AZURE_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
-              AZURE_TENANT: $(AZURE_TENANT)
   - stage: Deploy
     jobs:
       - job: Deploy_Infrastructure
