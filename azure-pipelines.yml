@@ -9,7 +9,7 @@ trigger:
     - master
   paths:
     include:
-    - pipelines/$(CLIENT_ID).yml
+    - azure-pipelines.yml
 
 stages:
   - stage: Build
