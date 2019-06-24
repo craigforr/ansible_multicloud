@@ -38,8 +38,7 @@ stages:
               echo "AZURE_SECRET: $(AZURE_SECRET)"
               echo "AZURE_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)"
               echo "AZURE_TENANT: $(AZURE_TENANT)"
-              az account list
-              # ansible-playbook --check --connection=local site.yml --extra-vars "client_id=$(CLIENT_ID)"
+              ansible-playbook --check --connection=local site.yml --extra-vars "client_id=$(CLIENT_ID)"
             displayName: "Ansible Playbook Check (Dry Run)"
   - stage: Deploy
     jobs:
