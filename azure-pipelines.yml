@@ -22,12 +22,6 @@ stages:
             displayName: "Check Installed Ansible Modules with ansible-doc"
           - bash: ansible-playbook --syntax-check --connection=local site.yml --extra-vars "client_id=$(CLIENT_ID)"
             displayName: "Check Ansible Playbook Syntax"
-            env:
-              CLIENT_ID: $(CLIENT_ID)
-              AZURE_CLIENT_ID: $(AZURE_CLIENT_ID)
-              AZURE_SECRET: $(AZURE_SECRET)
-              AZURE_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
-              AZURE_TENANT: $(AZURE_TENANT)
       - job: Preview
         pool:
           vmImage: 'ubuntu-16.04'
