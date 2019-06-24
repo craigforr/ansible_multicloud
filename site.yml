@@ -3,7 +3,7 @@
   tasks:
     - name: Resource Group
       azure_rm_resourcegroup:
-        name: "{{ client_id }}"
+        name: "cf-lab-{{ client_id }}"
         location: northcentralus
       register: rg
     - debug:
