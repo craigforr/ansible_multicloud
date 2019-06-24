@@ -9,7 +9,7 @@ trigger:
     - master
   paths:
     include:
-    - pipelines/$(CLIENT_ID).yml
+    - pipelines/phoenix.yml
 
 stages:
   - stage: Build
@@ -40,6 +40,8 @@ stages:
               echo "AZURE_TENANT: $(AZURE_TENANT)"
               ansible-playbook --check --connection=local site.yml --extra-vars "client_id=$(CLIENT_ID)"
             displayName: "Ansible Playbook Check (Dry Run)"
+            env:
+              AZURE_SECRET: $(AZURE_SECRET)
   - stage: Deploy
     jobs:
       - job: Deploy_Infrastructure
@@ -51,4 +53,7 @@ stages:
             displayName: "DEBUG - Check Azure Pipeline Agent Environment Variables"
           - bash: ansible-playbook --connection=local site.yml --extra-vars "client_id=$(CLIENT_ID)"
             displayName: "Ansible Playbook Run"
+            env:
+              AZURE_SECRET: $(AZURE_SECRET)
+
 ...
