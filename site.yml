@@ -1,11 +1,23 @@
 ---
 - hosts: localhost
   tasks:
-    - name: Resource Group
+
+    - name: Resource Group Absent
       azure_rm_resourcegroup:
         name: "cf-lab-{{ client_id }}"
         location: northcentralus
       register: rg
+      state: absent
+      when: do_destroy
+
+    - name: Resource Group Present
+      azure_rm_resourcegroup:
+        name: "cf-lab-{{ client_id }}"
+        location: northcentralus
+      register: rg
+      state: present
+      when: do_build
+
     - debug:
         var: rg
 ...
