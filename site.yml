@@ -20,6 +20,7 @@
       azure_rm_resourcegroup:
         name: "cf-lab-{{ client_id }}"
         location: northcentralus
+        force_delete_nonempty: true
         state: absent
       register: rg_destroy
       when: do_destroy or do_rebuild
