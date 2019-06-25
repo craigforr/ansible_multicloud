@@ -1,8 +1,9 @@
 ---
 - hosts: localhost
   vars:
-    do_destroy: False
     do_build: True
+    do_destroy: False
+    do_rebuild: False
 
   tasks:
 
@@ -12,7 +13,7 @@
         location: northcentralus
         state: absent
       register: rg
-      when: do_destroy
+      when: do_destroy or do_rebuild
 
     - name: Resource Group Present
       azure_rm_resourcegroup:
@@ -20,7 +21,7 @@
         location: northcentralus
         state: present
       register: rg
-      when: do_build
+      when: do_build or do_rebuild
 
     - debug:
         var: rg

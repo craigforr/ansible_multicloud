@@ -49,7 +49,9 @@ stages:
           vmImage: 'ubuntu-16.04'
         container: microsoft/ansible:latest
         steps:
-          - bash: ansible-playbook --connection=local site.yml --extra-vars "client_id=$(CLIENT_ID) do_destroy=$(DO_DESTROY) do_build=$(DO_BUILD)"
+          - bash: |
+            ansible-playbook --connection=local site.yml \
+            --extra-vars "client_id=$(CLIENT_ID) do_destroy=$(DO_DESTROY) do_rebuild=$(DO_REBUILD) do_build=$(DO_BUILD)"
             displayName: "Ansible Playbook Run"
             env:
               AZURE_SECRET: $(AZURE_SECRET)
