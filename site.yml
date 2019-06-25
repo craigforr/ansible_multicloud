@@ -20,7 +20,8 @@
       azure_rm_resourcegroup:
         name: "cf-lab-{{ client_id }}"
         location: northcentralus
-        force_delete_nonempty: true
+        # force_delete_nonempty: true # Ansible 2.8+
+        force: true # Ansible 2.7
         state: absent
       register: rg_destroy
       when: do_destroy or do_rebuild
