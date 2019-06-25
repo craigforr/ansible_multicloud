@@ -1,5 +1,9 @@
 ---
 - hosts: localhost
+  vars:
+    do_destroy: False
+    do_build: True
+
   tasks:
 
     - name: Resource Group Absent
