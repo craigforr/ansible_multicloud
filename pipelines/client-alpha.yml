@@ -9,7 +9,7 @@ trigger:
     - master
   paths:
     include:
-    - pipelines/phoenix.yml
+    - pipelines/client-alpha.yml
 
 stages:
   - stage: Build
