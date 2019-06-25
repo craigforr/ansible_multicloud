@@ -22,7 +22,7 @@
         force: true # Ansible 2.7
         state: absent
       register: rg_destroy
-      when: do_destroy or do_rebuild
+      when: (do_destroy == True) or (do_rebuild == True)
 
     - debug:
         var: rg_destroy
@@ -33,7 +33,7 @@
         location: northcentralus
         state: present
       register: rg
-      when: do_build or do_rebuild
+      when: (do_build == True) or (do_rebuild == True)
 
     - debug:
         var: rg
