@@ -10,16 +10,16 @@
       azure_rm_resourcegroup:
         name: "cf-lab-{{ client_id }}"
         location: northcentralus
+        state: absent
       register: rg
-      state: absent
       when: do_destroy
 
     - name: Resource Group Present
       azure_rm_resourcegroup:
         name: "cf-lab-{{ client_id }}"
         location: northcentralus
+        state: present
       register: rg
-      state: present
       when: do_build
 
     - debug:
