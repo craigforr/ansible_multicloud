@@ -12,8 +12,11 @@
         name: "cf-lab-{{ client_id }}"
         location: northcentralus
         state: absent
-      register: rg
+      register: rg_destroy
       when: do_destroy or do_rebuild
+
+    - debug:
+        var: rg_destroy
 
     - name: Resource Group Present
       azure_rm_resourcegroup:
