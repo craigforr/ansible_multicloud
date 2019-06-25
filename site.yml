@@ -9,10 +9,8 @@
 
     - debug:
         var: do_build
-
     - debug:
         var: do_destroy
-
     - debug:
         var: do_rebuild
 
