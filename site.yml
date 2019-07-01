@@ -8,6 +8,8 @@
   tasks:
 
     - debug:
+        var: build_env
+    - debug:
         var: do_build
     - debug:
         var: do_destroy
@@ -16,7 +18,7 @@
 
     - name: Resource Group Absent
       azure_rm_resourcegroup:
-        name: "cf-lab-{{ client_id }}"
+        name: "cf-lab-{{ client_id }}-{{ build_env }}"
         location: northcentralus
         # force_delete_nonempty: true # Ansible 2.8+
         force: true # Ansible 2.7
@@ -29,7 +31,7 @@
 
     - name: Resource Group Present
       azure_rm_resourcegroup:
-        name: "cf-lab-{{ client_id }}"
+        name: "cf-lab-{{ client_id }}-{{ build_env }}"
         location: northcentralus
         state: present
       register: rg
