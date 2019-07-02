@@ -3,13 +3,13 @@
 # feature (currently in Preview) is turned on:
 # https://docs.microsoft.com/en-us/azure/devops/project/navigation/preview-features
 
-trigger:
+trigger: none
 # branches:
 #   include:
 #   - master
-  tags:
-    include:
-      - 'v*' # Include all version tags, e.g., v0.1.0 or v1.2.3
+# tags:
+#   include:
+#     - 'v*' # Include all version tags, e.g., v0.1.0 or v1.2.3
 
 stages:
   - stage: Build
