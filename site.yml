@@ -19,7 +19,7 @@
         force: true # Ansible 2.7
         state: absent
       register: rg_destroy
-      when: ("destroy" in build_action) or ("rebuild" in build_action)
+      when: "'destroy' in build_action"
 
     - debug:
         var: rg_destroy
