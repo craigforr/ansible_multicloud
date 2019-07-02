@@ -1,0 +1,6 @@
+---
+# azure_core.yml
+- hosts: localhost
+  roles:
+    - azure_core
+...
