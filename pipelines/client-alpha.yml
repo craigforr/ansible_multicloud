@@ -4,9 +4,9 @@
 # https://docs.microsoft.com/en-us/azure/devops/project/navigation/preview-features
 
 trigger:
-  branches:
-    include:
-    - master
+# branches:
+#   include:
+#   - master
   tags:
     include:
       - 'v*' # Include all version tags, e.g., v0.1.0 or v1.2.3
