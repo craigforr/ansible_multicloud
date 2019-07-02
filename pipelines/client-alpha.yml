@@ -7,9 +7,12 @@ trigger:
   branches:
     include:
     - master
-  paths:
+  tags:
     include:
-    - pipelines/client-alpha.yml
+      - 'v*' # Include all version tags, e.g., v0.1.0 or v1.2.3
+# paths:
+#   include:
+#   - pipelines/client-alpha.yml
 
 stages:
   - stage: Build
@@ -53,7 +56,7 @@ stages:
         steps:
           - bash: |
               ansible-playbook --connection=local site.yml \
-                --extra-vars "client_id=$(CLIENT_ID) build_env=$(build_env) do_destroy=$(DO_DESTROY) do_rebuild=$(DO_REBUILD) do_build=$(DO_BUILD)"
+                --extra-vars "client_id=$(CLIENT_ID) build_env=$(build_env) build_action=$(BUILD_ACTION)"
             displayName: "Ansible Playbook Run"
             env:
               AZURE_SECRET: $(AZURE_SECRET)
@@ -68,7 +71,7 @@ stages:
         steps:
           - bash: |
               ansible-playbook --connection=local site.yml \
-                --extra-vars "client_id=$(CLIENT_ID) build_env=$(build_env) do_destroy=$(DO_DESTROY) do_rebuild=$(DO_REBUILD) do_build=$(DO_BUILD)"
+                --extra-vars "client_id=$(CLIENT_ID) build_env=$(build_env) build_action=$(BUILD_ACTION)"
             displayName: "Ansible Playbook Run"
             env:
               AZURE_SECRET: $(AZURE_SECRET)
