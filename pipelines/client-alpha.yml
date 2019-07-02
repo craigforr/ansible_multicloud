@@ -10,9 +10,6 @@ trigger:
   tags:
     include:
       - 'v*' # Include all version tags, e.g., v0.1.0 or v1.2.3
-# paths:
-#   include:
-#   - pipelines/client-alpha.yml
 
 stages:
   - stage: Build
