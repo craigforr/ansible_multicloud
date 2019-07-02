@@ -1,9 +1,9 @@
 ---
 - hosts: localhost
   vars:
-    do_build: True
-    do_destroy: False
-    do_rebuild: False
+    do_build: true
+    do_destroy: false
+    do_rebuild: false
     build_env: 'UNDEFINED'
 
   tasks:
@@ -25,7 +25,7 @@
         force: true # Ansible 2.7
         state: absent
       register: rg_destroy
-      when: do_destroy == True or do_rebuild == True
+      when: do_destroy == true or do_rebuild == true
 
     - debug:
         var: rg_destroy
@@ -36,7 +36,7 @@
         location: northcentralus
         state: present
       register: rg
-      when: do_build == True or do_rebuild == True
+      when: do_build == true or do_rebuild == true
 
     - debug:
         var: rg
