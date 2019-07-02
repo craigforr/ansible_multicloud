@@ -30,7 +30,7 @@
         location: northcentralus
         state: present
       register: rg_build
-      when: "build" in build_action
+      when: "'build' in build_action"
 
     - debug:
         var: rg_build
