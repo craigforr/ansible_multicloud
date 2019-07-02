@@ -1,21 +1,15 @@
 ---
 - hosts: localhost
   vars:
-    do_build: true
-    do_destroy: false
-    do_rebuild: false
     build_env: 'UNDEFINED'
+    build_action: 'build'
 
   tasks:
 
     - debug:
         var: build_env
     - debug:
-        var: do_build
-    - debug:
-        var: do_destroy
-    - debug:
-        var: do_rebuild
+        var: build_action
 
     - name: Resource Group Absent
       azure_rm_resourcegroup:
@@ -25,7 +19,7 @@
         force: true # Ansible 2.7
         state: absent
       register: rg_destroy
-      when: do_destroy == true or do_rebuild == true
+      when: "build_action == 'destroy' or build_action == 'rebuild'"
 
     - debug:
         var: rg_destroy
@@ -35,9 +29,9 @@
         name: "cf-lab-{{ client_id }}-{{ build_env }}"
         location: northcentralus
         state: present
-      register: rg
-      when: do_build == true or do_rebuild == true
+      register: rg_build
+      when: "'build' in build_action"
 
     - debug:
-        var: rg
+        var: rg_build
 ...
