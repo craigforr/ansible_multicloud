@@ -3,4 +3,7 @@
 - hosts: localhost
   roles:
     - azure_core
+  vars:
+    build_env: 'UNDEFINED'
+    build_action: 'build'
 ...
