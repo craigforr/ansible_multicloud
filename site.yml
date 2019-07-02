@@ -19,7 +19,7 @@
         force: true # Ansible 2.7
         state: absent
       register: rg_destroy
-      when: "build_action == 'destroy' or build_action == 'rebuild'"
+      when: 'destroy' in build_action or 'rebuild' in build_action
 
     - debug:
         var: rg_destroy
@@ -30,7 +30,7 @@
         location: northcentralus
         state: present
       register: rg_build
-      when: "'build' in build_action"
+      when: 'build' in build_action
 
     - debug:
         var: rg_build
