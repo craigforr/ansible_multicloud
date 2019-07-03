@@ -1,0 +1,6 @@
+---
+# azure_network.yml
+- hosts: localhost
+  roles:
+    - azure_network
+...
