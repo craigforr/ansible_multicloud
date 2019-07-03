@@ -1,0 +1,5 @@
+# azure_core/vars/main.yml
+resource_group: "cf-lab-default"
+region: northcentralus
+virtual_network: "{{ resource_group }}-vnet"
+subnet: "{{ resource_group }}-subnet1"
