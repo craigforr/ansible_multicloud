@@ -1,6 +1,7 @@
 ---
 # azure_network/tasks/main.yml
-# - import_playbook: ipify.yml
+- import_playbook: ipify.yml
+
 - name: Virtual Network
   azure_rm_virtualnetwork:
     resource_group: "{{ resource_group }}"
