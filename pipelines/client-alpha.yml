@@ -25,12 +25,14 @@ stages:
             displayName: "Check Version of ansible, ansible-playbook"
           - bash: ansible-doc --list
             displayName: "Check Installed Ansible Modules with ansible-doc"
-          - bash: ansible-playbook --syntax-check --connection=local site.yml --extra-vars "client_id=$(CLIENT_ID)"
+          - bash: ansible-playbook --syntax-check --connection=local site.yml --extra-vars "build_env=$(build_env) client_id=$(CLIENT_ID)"
             displayName: "Check Ansible Playbook Syntax"
       - job: Preview
         pool:
           vmImage: 'ubuntu-16.04'
         container: microsoft/ansible:latest
+        variables:
+          build_env: dev
         steps:
           - bash: |
               echo "CLIENT_ID: $(CLIENT_ID)"
