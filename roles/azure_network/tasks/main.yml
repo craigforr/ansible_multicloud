@@ -1,6 +1,9 @@
 ---
 # azure_network/tasks/main.yml
-- import_playbook: ipify.yml
+- name: Public IP of Ansible Controller (ipify)
+  ipify_facts:
+    api_url: https://api.ipify.org
+    timeout: 20
 
 - name: Virtual Network
   azure_rm_virtualnetwork:
