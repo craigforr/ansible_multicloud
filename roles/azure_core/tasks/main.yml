@@ -5,10 +5,16 @@
 - debug:
     var: build_action
 
+- set_fact:
+    resource_group: "cf-lab-{{ client_id }}-{{ build_env }}"
+    region: northcentralus
+    virtual_network: "{{ resource_group }}-vnet"
+    subnet: "{{ resource_group }}-subnet1"
+
 - name: Resource Group Absent
   azure_rm_resourcegroup:
     name: "cf-lab-{{ client_id }}-{{ build_env }}"
-    location: northcentralus
+    location: "{{ region }}"
     # force_delete_nonempty: true # Ansible 2.8+
     force: true # Ansible 2.7
     state: absent
@@ -20,8 +26,8 @@
 
 - name: Resource Group Present
   azure_rm_resourcegroup:
-    name: "cf-lab-{{ client_id }}-{{ build_env }}"
-    location: northcentralus
+    name: "{{ resource_group }}"
+    location: "{{ region }}"
     state: present
   register: rg_build
   when: "'build' in build_action"

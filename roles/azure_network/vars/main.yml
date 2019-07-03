@@ -1,0 +1,4 @@
+---
+# azure_network/vars/main.yml
+virtual_network: vars-vnet
+subnet: vars-subnet
