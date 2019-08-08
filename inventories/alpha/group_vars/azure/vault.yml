@@ -1,0 +1,4 @@
+---
+# group_vars/azure/vault.yml
+# Encrypted group variables
+...

@@ -1,0 +1,26 @@
+---
+# group_vars/azure/vars.yml
+# Unencrypted group variables
+client: "cf-alpha"
+azure_network_rg: "cf-alpha-core-rg"
+azure_network_region: "eastus2"
+virtual_networks:
+  - name: "{{ client }}-core-vnet"
+    resource_group: "{{ azure_network_rg }}"
+    address: "10.77.0.0/16"
+    state: "present"
+    subnets:
+      - name: "{{ client }}-core-subnet1"
+        resource_group: "{{ azure_network_rg }}"
+        address: "10.77.0.0/24"
+        nsg: "{{ client }}-core-subnet1-nsg"
+        virtual_network: "{{ client }}-core-vnet"
+        state: "present"
+      - name: "{{ client }}-core-subnet2"
+        resource_group: "{{ azure_network_rg }}"
+        address: "10.77.1.0/24"
+        nsg: "{{ client }}-core-subnet2-nsg"
+        virtual_network: "{{ client }}-core-vnet"
+        state: "present"
+
+...
