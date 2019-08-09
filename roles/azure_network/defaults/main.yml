@@ -1,0 +1,36 @@
+---
+# azure_network/defaults/main.yml
+
+azure_network_rg: "cf-core-rg"
+virtual_networks:
+  - name: "core-vnet"
+    resource_group: "{{ azure_network_rg }}"
+    address: "10.99.0.0/16"
+    state: "present"
+    subnets:
+      - name: "core-subnet1"
+        resource_group: "{{ azure_network_rg }}"
+        address: "10.99.0.0/24"
+        nsg: "core-subnet1-nsg"
+        virtual_network: "core-vnet"
+        state: "present"
+      - name: "core-subnet2"
+        resource_group: "{{ azure_network_rg }}"
+        address: "10.99.1.0/24"
+        nsg: "core-subnet2-nsg"
+        virtual_network: "core-vnet"
+        state: "present"
+
+# - virtual_network:
+#     azure_network_rg: "core-rg"
+#     name: "core-vnet"
+#     address: "10.99.0.0/16"
+#     state: "present"
+#     subnets:
+#       - subnet:
+#           name: "core-subnet1"
+#           address: "10.99.0.0/24"
+#       - subnet:
+#           name: "core-subnet2"
+#           address: "10.99.1.0/24"
+...

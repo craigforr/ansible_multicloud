@@ -1,32 +1,51 @@
 ---
 # azure_network/tasks/main.yml
-- name: Public IP of Ansible Controller (ipify)
-  ipify_facts:
-    api_url: https://api.ipify.org
-    timeout: 20
+
+- name: Resource Group
+  azure_rm_resourcegroup:
+    name: "{{ azure_network_rg }}"
+    location: "azure_network_region"
+    tags:
+      environment: "Test"
+      owner: "craigf"
+      delete: "2019-08-01"
 
 - name: Virtual Network
   azure_rm_virtualnetwork:
-    resource_group: "{{ resource_group }}"
-    name: "{{ virtual_network }}"
-    address_prefixes: "10.99.0.0/16"
-    state: present
+    resource_group: "{{ item.0.resource_group }}"
+    name: "{{ item.0.name }}"
+    address_prefixes_cidr: "{{ item.0.address }}"
+    state: "{{ item.0.state }}"
+  loop:
+    - "{{ virtual_networks }}"
 
 - name: Network Security Group
-  vars:
-    ansible_public_ip: "{{ ipify_public_ip }}"
   azure_rm_securitygroup:
-    resource_group: "{{ resource_group }}"
-    name: "{{ subnet }}-nsg"
-    state: present
+    resource_group: "{{ item.resource_group }}"
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+    rules:
+      - name: 'AllowMultiplePorts'
+        protocol: Tcp
+        source_address_prefix:
+          - '97.84.247.32'
+        destination_port_range:
+          - 22
+          - 3389
+        access: Allow
+        priority: 101
     purge_rules: False
+  loop:
+    - "{{ subelements('subnets') }}"
 
 - name: Virtual Network Subnet
   azure_rm_subnet:
-    resource_group: "{{ resource_group }}"
-    name: "{{ subnet }}"
-    address_prefix: "10.99.0.0/24"
-    virtual_network: "{{ virtual_network }}"
-    security_group: "{{ subnet }}-nsg"
-    state: present
+    resource_group: "{{ item.resource_group }}"
+    name: "{{ item.name }}"
+    address_prefixes_cidr: "{{ item.address }}"
+    virtual_network: "{{ item.virtual_network }}"
+    security_group: "{{ item.nsg }}"
+    state: "{{ item.state }}"
+  loop:
+    - "{{ subelements('subnets') }}"
 ...
