@@ -1,7 +1,7 @@
 ---
 # azure.yml
-- import_playbook: azure_core.yml
+# - import_playbook: azure_core.yml
 - import_playbook: azure_network.yml
-  # - import_playbook: azure_linux.yml
-  # - import_playbook: azure_windows.yml
+# - import_playbook: azure_linux.yml
+# - import_playbook: azure_windows.yml
 ...
