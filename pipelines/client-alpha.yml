@@ -65,7 +65,6 @@ stages:
       - job: Deploy_Prod_Infrastructure
         pool:
           vmImage: 'ubuntu-16.04'
-        container: microsoft/ansible:latest
         container: microsoft/ansible:ansible2.7.0
         variables:
           build_env: prod
