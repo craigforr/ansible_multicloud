@@ -45,7 +45,7 @@ stages:
             displayName: "Ansible Playbook Check (Dry Run)"
             env:
               AZURE_SECRET: $(AZURE_SECRET)
-  - stage: Dev Environment
+  - stage: Dev
     jobs:
       - job: Deploy_Dev_Infrastructure
         pool:
@@ -60,7 +60,7 @@ stages:
             displayName: "Ansible Playbook Run"
             env:
               AZURE_SECRET: $(AZURE_SECRET)
-  - stage: Prod Environment
+  - stage: Prod
     jobs:
       - job: Deploy_Prod_Infrastructure
         pool:
